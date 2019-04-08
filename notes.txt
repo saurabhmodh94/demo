@@ -18,61 +18,59 @@ alt+enter
 
 auto improt ???
 
-from . import views
-# in 1 dir only
-pip install django-rest-knox  djangorestframework
-    'rest_framework',
-    'knox'
+    path('', include('accounts.urls')),
 
-from knox import views as knox_views
+    from knox import views as knox_views
+    path('api/auth/logout/', knox_views.LogoutView.as_view()),
 
 
-include('accounts.urls')
+    from . import views
+    # in 1 dir only
+    
+    pip install django django-rest-knox  djangorestframework
+        'rest_framework',
+        'knox' 
 
-class LoginAPI(APIView):
+    class LoginAPI(APIView):
 
-    def get(self, request, id):
+        def get(self, request, id):
 
+    class ImportContacts(models.Model): #AbstractUser
+        name = models.CharField(max_length=127)
 
+    models.CASCADE
 
-class ImportContacts(models.Model): #AbstractUser
-    name = models.CharField(max_length=127)
+    # before first migrations
+    AUTH_USER_MODEL = "accounts.User"
 
-models.CASCADE
+    from rest_framework import serializers
 
-# before first migrations
-AUTH_USER_MODEL = "accounts.User"
+    class XXX(serializers.ModelSerializer):
+        class Meta:
+            model = Tweet
+            fields = '__all__' or ('',)
 
-from rest_framework import serializers
+    Tweet.objects.
 
+    except Exception as e:
+        e.message
+        raise Http404
 
-class XXX(serializers.ModelSerializer):
-    class Meta:
-        model = Tweet
-        fields = '__all__' or ('',)
-
-Tweet.objects.
-
-except Exception as e:
-    e.message
-    raise Http404
-
-
-        tweet = self.get_object(id)
-        serialize = TweetSerializer(tweet, data=request.data) #, many=True
-        if serialize.is_valid(): #raise_exception=True
-            serialize.save()
-            return Response(serialize.data)
-        return Response(serialize.errors, status=status.HTTP_400_BAD_REQUEST)
+    tweet = self.get_object(id)
+    serialize = TweetSerializer(tweet, data=request.data) #, many=True
+    if serialize.is_valid(): #raise_exception=True
+        serialize.save()
+        return Response(serialize.data)
+    return Response(serialize.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-.delete()
+    .delete()
 
-, safe=False //not needed
+    , safe=False //not needed
 
     permission_classes = (permissions.IsAuthenticated,)
 
-extra_kwargs = { 'passwprd': {'write_only': True}}
+    extra_kwargs = { 'passwprd': {'write_only': True}}
 
     def create(self, validated_data):
         User.objects.create_user(validated_data['username'],)
@@ -90,10 +88,9 @@ class LoginSerializer(serializers.Serializer):
 
 from django.shortcuts import get_object_or_404
 
-"token": AuthToken.objects.create(user)
+instance, token = AuthToken.objects.create(user)
 
-demo. remove
-
+demo. remove ???
 
 user = serialize.validated_data
 
@@ -106,88 +103,96 @@ def index(request):
     return render(request, 'accounts/dashboard.html', {})
 
 
-frontend
-    src
-        actions/
-            common.js tokenconfig, error/success
-            types.js
-            auth.js - user,login, logout, register
-            tweets.js - crud - get list, get one, updaet, delete, add
-        components/
-            accounts/ login, register
-            layout/ header, alert
-            tweets/ dashbord -> form -> tweets
-            common/ ignore for now... private route
-            App.js
-        reducers/
-            index.js // combineReducers
-            others
-        store.js
-        index.js
-            import App
-    templates/frontend ->
+
+
+
         index.html.
             {% load static %}
             logo
-            bootstrap css,js || custom css js
+            bootstrap css,js || custom css js || bundle js
             <div id="app"></div>
-
-    static/frontend
-
-
-
-
-
-
-
-
-
- 1961  virtualenv -p python3 .venv
- 1966  source .venv/bin/activate
- 1967  pip install django
- 1969  pip freeze > requirements.txt
- 1970  django-admin startproject demo
- 1972  django-admin startapp accounts
- 1973  cd demo/
- 1974  python manage.py makemigrations
- 1975  python manage.py migrate
- 1976  python manage.py createsuperuser
- 1980  git init
- 1981  touch .gitignore
- 1982  touch readme.md
- 1983  python manage.py runserver
- 1987  deactivate
- 1990  git remote add origin git@github.com:saurabhmodh94/demo.git
-
-
-
-# instahyre
-session management - how works? django backend db. frontend request?? token?
-packet sniffing - can it be done?
-    cqrs
-    ip
-
-
-
-#optimize
-login--register API
-
-
-	"username": "abcdefg",
-	"email":"abc@gmail.com",
-
-	"password": "sss",
-	"phone_number": "1234567890"
-
-
-
-
-    =================================
+  
 1995  npm init
- 1998  npm i -D webpack webpack-dev webpack-cli @babel/core babel-loader @babel/preset-env @babel/preset-react babel-plugin-transform-class-properties react react-dom prop-types redux react-redux redux-thunk redux-devtools-extension axios react-router-dom
+1998  npm i -D webpack webpack-dev webpack-cli @babel/core babel-loader @babel/preset-env @babel/preset-react babel-plugin-transform-class-properties react react-dom prop-types redux react-redux redux-thunk redux-devtools-extension axios react-router-dom cogo-toast
+{% load static %}
 
 
- .
+"build": "webpack --mode (production/development) (--watch) <input_src> --output <op_src>"
+
+npm run dev
+
+static static two dir... big issue resolved // can not put dir into static file, has to go through with collectstatic
+you can not use collectstatic files in dev mode... never. local files only will be serverd... mistirious.. lesson learnt
+
+    rccp
+
+    <Link to="/">
+
+            {arr.map(elem => (
+            ))}
+
+    {this.props.deleteLead.bind(this, lead.id)}     
+    (id, e)
+
+    export const GET_TWEETS = "GET_TWEETS";
+
+    import axios from "axios";
+
+    import cogoToast from "cogo-toast";
+
+    //       cogoToast.error(err.response.status + " : " + err.response.data.detail, {
+    //         position: "bottom-center"
+    //       });
+
+    localStorage.getItem("token") //setItem//remove
+
+    onChange = e => {this.setState({ [e.target.name] : e.target.value})};
+    e.preventDefault();
+    const { username, email, password, password2 } = this.state;
+
+    tweets - 3 get, add,delete
+    login - 2
+    register - 2
+    logout -1
+    user -3 case: + 1 = 4
+
+    token: null,
+    user: null,
+    isAuth: null,
+    isLoading: false
+
+    tweets: [...state.tweets, action.payload]
+    tweets: state.tweets.filter(tweet => tweet.id != action.payload)
+
+
+    type="text"
+    maxLength={10}???
+
+    if (this.props.isAuth) {
+      return <Redirect to="/" />;
+    }
+
+
+
+
+
+
+
+
+
+dump:
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'demo/frontend/static/')
+# ]
+
+# LOGIN_REDIRECT_URL = '/'
+# LOGIN_URL = '/login/'
+# LOGOUT_REDIRECT_URL = "/login/"
+
+
+.
 ├── admin.py
 ├── apps.py
 ├── __init__.py
@@ -198,24 +203,34 @@ login--register API
 │   ├── actions
 │   │   ├── auth.js
 │   │   ├── common.js
-│   │   ├── tweet.js
+│   │   ├── tweets.js
 │   │   └── types.js
 │   ├── components
 │   │   ├── accounts
 │   │   │   ├── Login.js
 │   │   │   └── Register.js
+│   │   ├── App.js
 │   │   ├── layout
 │   │   │   └── Header.js
 │   │   └── tweets
 │   │       ├── Dashboard.js
 │   │       ├── Form.js
-│   │       └── Tweet.js
+│   │       └── Tweets.js
 │   ├── index.js
 │   ├── reducers
-│   │   └── index.js
+│   │   ├── auth.js
+│   │   ├── index.js
+│   │   └── tweets.js
 │   └── store.js
 ├── static
 │   └── frontend
+│       ├── css
+│       │   └── styles.css
+│       ├── img
+│       │   └── logo.png
+│       └── js
+│           ├── bundle.js
+│           └── main.js
 ├── templates
 │   └── frontend
 │       └── index.html
@@ -223,58 +238,29 @@ login--register API
 ├── urls.py
 └── views.py
 
-{% load static %}
+#optimize
+login--register API
 
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'app/static')
-]
-
-LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = '/login/'
-LOGOUT_REDIRECT_URL = "/login/"
-
-"build": "webpack --mode (production/development) (--watch) <input_src> --output <op_src>"
-
-npm run dev
+# instahyre
+session management - how works? django backend db. frontend request?? token?
+packet sniffing - can it be done?
+    cqrs
+    ip
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import App from './components/App';
-
-static static two dir... big issue resolved
-
-rccp
-
-ReactDOM.render(<App />, document.getElementById("app"))
-
-PRF
-
-
-import React, { Component, Fragment } from 'react';
-import ReactDOM from 'react-dom';
-import {
-  HashRouter as Router,
-  Switch,
-  Route,
-  Redirect
-} from 'react-router-dom';
-import { Provider } from 'react-redux';
+ 1961  virtualenv -p python3 .venv
+ 1966  source .venv/bin/activate
+ 1967  pip install django
+ 1969  pip freeze > requirements.txt
+ 1970  django-admin startproject demo
+ 1972  django-admin startapp accounts
+ 1974  python manage.py makemigrations
+ 1975  python manage.py migrate
+ 1976  python manage.py createsuperuser
+ 1980  git init
+ 1981  touch .gitignore
+ 1983  python manage.py runserver
+ 1987  deactivate
+ 1990  git remote add origin git@github.com:saurabhmodh94/demo.git
