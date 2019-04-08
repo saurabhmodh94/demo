@@ -1,0 +1,11 @@
+export const GET_TWEETS = "GET_TWEETS";
+export const DELETE_TWEET = "DELETE_TWEET";
+export const ADD_TWEET = "ADD_TWEET";
+export const REGISTER_FAIL = "REGISTER_FAIL";
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+export const USER_LOADING = "USER_LOADING";
+export const USER_LOADING_FAIL = "USER_LOADING_FAIL";
+export const USER_LOADED = "USER_LOADED";
